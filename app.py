@@ -34,6 +34,8 @@ with gr.Blocks(css="footer{display:none !important}", theme=theme) as demo:
 
 This model is licensed under the [Microsoft Research License](https://huggingface.co/microsoft/phi-2/resolve/main/LICENSE). You may only use it for non-commercial purposes.
 
+Note: for longer generation (>512), keep clicking "Generate!" The demo is currently limited to 512 demos per generation to ensure all users have access to this service. Please note that once you start generating, you cannot stop generating until the generation is done.
+
 By [mrfakename](https://twitter.com/realmrfakename). Inspired by [@randomblock1's demo](https://huggingface.co/spaces/randomblock1/phi-2).
 """.strip())
     text = gr.Textbox(label="Prompt", lines=10, interactive=True, placeholder="Write a detailed analogy between mathematics and a lighthouse.")
