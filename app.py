@@ -2,7 +2,7 @@ import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, TextIteratorStreamer
 import gradio as gr
 from threading import Thread
-
+device = "cpu"
 if torch.cuda.is_available():
     device = "cuda"
 if torch.backends.mps.is_available():
