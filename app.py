@@ -39,7 +39,10 @@ This model is licensed under the [Microsoft Research License](https://huggingfac
 Note: for longer generation (>512), keep clicking "Generate!" The demo is currently limited to 512 demos per generation to ensure all users have access to this service. Please note that once you start generating, you cannot stop generating until the generation is done.
 
 By [mrfakename](https://twitter.com/realmrfakename). Inspired by [@randomblock1's demo](https://huggingface.co/spaces/randomblock1/phi-2).
+
+Duplicate this Space to skip the wait!
 """.strip())
+    gr.DuplicateButton()
     text = gr.Textbox(label="Prompt", lines=10, interactive=True, placeholder="Write a detailed analogy between mathematics and a lighthouse.")
     temp = gr.Slider(label="Temperature", minimum=0.1, maximum=1.5, value=0.7)
     maxlen = gr.Slider(label="Max Length", minimum=4, maximum=512, value=75)
