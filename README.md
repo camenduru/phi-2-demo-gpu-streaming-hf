@@ -10,4 +10,4 @@ pinned: false
 license: unknown
 ---
 
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+Inspired by: https://huggingface.co/spaces/randomblock1/phi-2
