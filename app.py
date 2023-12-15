@@ -44,7 +44,7 @@ By [mrfakename](https://twitter.com/realmrfakename). Inspired by [@randomblock1'
     temp = gr.Slider(label="Temperature", minimum=0.1, maximum=1.5, value=0.7)
     maxlen = gr.Slider(label="Max Length", minimum=4, maximum=512, value=75)
     go = gr.Button("Generate", variant="primary")
-    go.click(generate_text, inputs=[text, temp, maxlen], outputs=[text])
+    go.click(generate_text, inputs=[text, temp, maxlen], outputs=[text], concurrency_limit=2)
     examples = gr.Examples(
         [
             ['Write a detailed analogy between mathematics and a lighthouse.', 0.7, 75],
@@ -59,5 +59,5 @@ By [mrfakename](https://twitter.com/realmrfakename). Inspired by [@randomblock1'
     )
 
 if __name__ == "__main__":
-    demo.launch(show_api=False)
+    demo.queue().launch(show_api=False)
 
