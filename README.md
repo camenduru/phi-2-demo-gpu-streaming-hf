@@ -8,6 +8,7 @@ sdk_version: 4.9.1
 app_file: app.py
 pinned: false
 license: agpl-3.0
+disable_embedding: true
 ---
 
 AGPL license
