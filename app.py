@@ -1,3 +1,4 @@
+import spaces
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, TextIteratorStreamer
 import gradio as gr
@@ -18,6 +19,8 @@ model = AutoModelForCausalLM.from_pretrained(
     torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
     trust_remote_code=True,
 ).to(device)
+
+@spaces.GPU
 def generate_text(text, temperature, maxLen):
     inputs = tokenizer([text], return_tensors="pt").to(device)
     streamer = TextIteratorStreamer(tokenizer)
