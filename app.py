@@ -33,7 +33,9 @@ def generate_text(text, temperature, maxLen):
         yield t
 with gr.Blocks(css="footer{display:none !important}", theme=theme) as demo:
     gr.Markdown("""
-# (Unofficial) Demo of Microsoft's Phi-2
+# (Unofficial) Demo of Microsoft's Phi-2 on GPU
+
+## Skip the queue. Try Phi-2 quickly on a GPU, without the wait!
 
 Not affiliated with Microsoft!
 
