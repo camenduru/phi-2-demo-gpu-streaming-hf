@@ -1,5 +1,5 @@
 ---
-title: Phi 2 Streaming
+title: Phi 2 Streaming on GPU
 emoji: ⚡
 colorFrom: gray
 colorTo: gray
