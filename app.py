@@ -35,8 +35,6 @@ with gr.Blocks(css="footer{display:none !important}", theme=theme) as demo:
     gr.Markdown("""
 # (Unofficial) Demo of Microsoft's Phi-2 on GPU
 
-## Skip the queue. Try Phi-2 quickly on a GPU, without the wait!
-
 Not affiliated with Microsoft!
 
 This model is licensed under the [Microsoft Research License](https://huggingface.co/microsoft/phi-2/resolve/main/LICENSE). You may only use it for non-commercial purposes.
