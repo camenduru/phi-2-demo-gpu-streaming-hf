@@ -20,7 +20,7 @@ model = AutoModelForCausalLM.from_pretrained(
     trust_remote_code=True,
 ).to(device)
 
-@spaces.GPU
+@spaces.GPU(enable_queue=True)
 def generate_text(text, temperature, maxLen):
     inputs = tokenizer([text], return_tensors="pt").to(device)
     streamer = TextIteratorStreamer(tokenizer)
