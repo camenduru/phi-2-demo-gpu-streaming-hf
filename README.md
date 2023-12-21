@@ -1,8 +1,8 @@
 ---
 title: Phi 2 Streaming on GPU
 emoji: ⚡
-colorFrom: gray
-colorTo: gray
+colorFrom: red
+colorTo: red
 sdk: gradio
 sdk_version: 4.9.1
 app_file: app.py
