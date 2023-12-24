@@ -2,4 +2,4 @@ gradio
 torch
 transformers
 einops
-detoxify
+git+https://github.com/unitaryai/detoxify
