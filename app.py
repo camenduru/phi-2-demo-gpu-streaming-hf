@@ -20,9 +20,9 @@ model = AutoModelForCausalLM.from_pretrained(
     torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
     trust_remote_code=True,
 ).to(device)
-mdl = Detoxify('original', device='cuda')
 @spaces.GPU(enable_queue=True)
 def generate_text(text, temperature, maxLen):
+    mdl = Detoxify('original', device='cuda')
     if mdl.predict(text)['toxicity'] > 0.7:
         raise gr.Error("Sorry, our systems may have detected toxic content. Please try a different input.")
     inputs = tokenizer([text], return_tensors="pt").to(device)
