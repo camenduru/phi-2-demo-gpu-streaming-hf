@@ -34,10 +34,11 @@ def generate_text(text, temperature, maxLen):
     toks = 0
     for out in streamer:
         toks += 1
-        if toks == 3:
+        if toks >= 3:
             toks = 0
             if mdl.predict(t)['toxicity'] > 0.7:
                 raise gr.Error("Sorry, our systems may have detected toxic content. Please try a different input.")
+                break
         t += out
         yield t
 with gr.Blocks(css="footer{display:none !important}", theme=theme) as demo:
