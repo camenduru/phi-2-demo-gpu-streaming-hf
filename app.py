@@ -1,4 +1,5 @@
 import spaces
+from detoxify import Detoxify
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, TextIteratorStreamer
 import gradio as gr
@@ -19,16 +20,24 @@ model = AutoModelForCausalLM.from_pretrained(
     torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
     trust_remote_code=True,
 ).to(device)
-
+mdl = Detoxify('original', device='cuda')
 @spaces.GPU(enable_queue=True)
 def generate_text(text, temperature, maxLen):
+    if mdl.predict(text)['toxicity'] > 0.7:
+        raise gr.Error("Sorry, our systems may have detected toxic content. Please try a different input.")
     inputs = tokenizer([text], return_tensors="pt").to(device)
     streamer = TextIteratorStreamer(tokenizer)
     generation_kwargs = dict(inputs, streamer=streamer, max_new_tokens=maxLen, temperature=temperature)
     thread = Thread(target=model.generate, kwargs=generation_kwargs)
     thread.start()
     t = ""
+    toks = 0
     for out in streamer:
+        toks += 1
+        if toks == 3:
+            toks = 0
+            if mdl.predict(t)['toxicity'] > 0.7:
+                raise gr.Error("Sorry, our systems may have detected toxic content. Please try a different input.")
         t += out
         yield t
 with gr.Blocks(css="footer{display:none !important}", theme=theme) as demo:
