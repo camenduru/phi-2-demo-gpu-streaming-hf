@@ -1,5 +1,4 @@
 import spaces
-from detoxify import Detoxify
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, TextIteratorStreamer
 import gradio as gr
@@ -22,9 +21,6 @@ model = AutoModelForCausalLM.from_pretrained(
 ).to(device)
 @spaces.GPU(enable_queue=True)
 def generate_text(text, temperature, maxLen):
-    mdl = Detoxify('original', device='cuda')
-    if mdl.predict(text)['toxicity'] > 0.7:
-        raise gr.Error("Sorry, our systems may have detected toxic content. Please try a different input.")
     inputs = tokenizer([text], return_tensors="pt").to(device)
     streamer = TextIteratorStreamer(tokenizer)
     generation_kwargs = dict(inputs, streamer=streamer, max_new_tokens=maxLen, temperature=temperature)
@@ -33,19 +29,15 @@ def generate_text(text, temperature, maxLen):
     t = ""
     toks = 0
     for out in streamer:
-        toks += 1
-        if toks >= 3:
-            toks = 0
-            if mdl.predict(t)['toxicity'] > 0.7:
-                raise gr.Error("Sorry, our systems may have detected toxic content. Please try a different input.")
-                break
         t += out
         yield t
 with gr.Blocks(css="footer{display:none !important}", theme=theme) as demo:
     gr.Markdown("""
 # (Unofficial) Demo of Microsoft's Phi-2 on GPU
 
-Not affiliated with Microsoft!
+The model is suitable for commercial use and is licensed under the MIT license. I am not responsible for any outputs you generate. You are solely responsible for ensuring that your usage of the model complies with applicable laws and regulations.
+
+I am not affiliated with the authors of the model (Microsoft).
 
 Note: for longer generation (>512), keep clicking "Generate!" The demo is currently limited to 512 demos per generation to ensure all users have access to this service. Please note that once you start generating, you cannot stop generating until the generation is done.
 
