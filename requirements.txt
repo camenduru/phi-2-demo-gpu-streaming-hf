@@ -1,4 +1,4 @@
 gradio
 torch
-transformers==4.31.0
+transformers
 einops
