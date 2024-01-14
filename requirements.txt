@@ -1,5 +1,5 @@
 gradio
 torch
-transformers
+transformers==4.31.0
 einops
 git+https://github.com/unitaryai/detoxify
