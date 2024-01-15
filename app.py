@@ -31,7 +31,7 @@ def generate_text(text, temperature, maxLen):
     for out in streamer:
         t += out
         yield t
-with gr.Blocks(css="footer{display:none !important}", theme=theme) as demo:
+with gr.Blocks(theme=theme) as demo:
     gr.Markdown("""
 # (Unofficial) Demo of Microsoft's Phi-2 on GPU
 
@@ -66,5 +66,5 @@ Duplicate this Space to skip the wait!
     gr.HTML('<img src="https://cdn-uploads.huggingface.co/production/uploads/62e54f0eae9d3f10acb95cb9/Lr9cPiTjUnaTcZvZMOxMr.png" style="height:50px">')
 
 if __name__ == "__main__":
-    demo.queue().launch(show_api=False)
+    demo.queue().launch()
 
