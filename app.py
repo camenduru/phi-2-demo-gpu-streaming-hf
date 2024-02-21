@@ -63,7 +63,6 @@ Duplicate this Space to skip the wait!
         ],
         [text, temp, maxlen]
     )
-    gr.HTML('<img src="https://cdn-uploads.huggingface.co/production/uploads/62e54f0eae9d3f10acb95cb9/Lr9cPiTjUnaTcZvZMOxMr.png" style="height:50px">')
 
 if __name__ == "__main__":
     demo.queue().launch()
